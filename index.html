@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Talking Pictures</title>
+</head>
+<body class="flex justify-center items-center h-[100vh] m-0 bg-black text-[#56C0FC] flex-col">
+
+    <img src="logo.jpg" alt="" class="w-[400px] h-[300px] object-fit">
+
+    <div class="text-center">
+        <div class="text-[42px]">Coming Soon</div>
+        <p class="text-white text-[1.2em]">We are working hard to give you a better experience. Stay tuned!</p>
+        <div class="text-[2em] mt-[1em] countdown">00:00:00</div>
+    </div>
+    <script>
+        // Countdown timer script
+        const countdownElement = document.querySelector('.countdown');
+        const targetDate = new Date('2024-09-07T00:00:00').getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                countdownElement.textContent = 'We are live!';
+            }
+        };
+
+        const interval = setInterval(updateCountdown, 100);
+    </script>
+</body>
+</html>
